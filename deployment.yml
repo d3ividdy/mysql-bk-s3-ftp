@@ -1,0 +1,52 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: mysq-bk-s3-ftp-data
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: mysq-bk-s3-ftp-data
+              image: deividdy/mysql-bk-s3-ftp:latest
+              env:
+              - name: MYSQLDUMP_OPTIONS
+                value: "--default-character-set=utf8 --single-transaction=TRUE --routines --events --no-create-info=TRUE"
+              - name: MYSQLDUMP_DATABASE
+                value: ""
+              - name: MYSQL_HOST
+                value: ""
+              - name: MYSQL_PORT
+                value: ""
+              - name: MYSQL_USER
+                value: ""
+              - name: MYSQL_PASS
+                value: ""
+
+              - name: S3_ACCESS_KEY_ID
+                value: ""
+              - name: S3_SECRET_ACCESS_KEY
+                value: ""
+              - name: S3_BUCKET
+                value: ""
+              - name: S3_PREFIX
+                value: ""
+              - name: S3_REGION
+                value: ""
+
+              - name: FTP_HOST
+                value: ""
+              - name: FTP_USER
+                value: ""
+              - name: FTP_PASS
+                value: ""
+              - name: FTP_PATH
+                value: ""
+              - name: FTP_FILE_NAME
+                value: ""
+              - name: FTP_OPTIONS
+                value: "--ftp-ssl"

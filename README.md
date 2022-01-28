@@ -15,7 +15,7 @@ Imagem para geração do dump com envio para Aws S3 & FTP Server
 - Run CLI
 
 ```sh
-docker run \
+docker run --name bk \
     -e MYSQL_HOST=localhost \
     -e MYSQL_PORT=3306 \
     -e MYSQL_USER=root \
@@ -31,6 +31,7 @@ docker run \
     -e FTP_PASS=root \
     -e FTP_HOST=localhost:30000 \
     -e FTP_PATH=backup \
+    -e FTP_OPTIONS="--ftp-ssl" \
     deividdy/mysql-bk-s3-ftp:latest
 ```
 
