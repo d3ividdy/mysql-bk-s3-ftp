@@ -60,3 +60,15 @@ Variaveis de Ambiente necessarias
 - FTP_PATH: path ftp
 - FTP_FILE_NAME: file name in ftp
 - FTP_OPTIONS: custon ftp arguments [ex: --ftp-ssl]
+
+## Comandos Uteis
+
+- Gerando uma nova versão da Imagem:
+
+```sh
+docker tag <IMAGE> deividdy/mysql-bk-s3-ftp:<VERSION>
+push deividdy/mysql-bk-s3-ftp:<VERSION>
+
+docker build -t deividdy/mysql-bk-s3-ftp:latest . --no-cache
+docker push deividdy/mysql-bk-s3-ftp:latest
+```
