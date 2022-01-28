@@ -1,4 +1,4 @@
-# Mysql Bakup Aws S3 & FTP Ser
+# Mysql Bakup Aws S3 & FTP Server
 
 Imagem para geração do dump com envio para Aws S3 & FTP Server
 
@@ -52,8 +52,11 @@ Variaveis de Ambiente necessarias
 - S3_BUCKET: bucket s3
 - S3_PREFIX: path S3 bucket
 - S3_REGION: region S3 bucket
+- S3_FILE_NAME: file name in s3
 
 - FTP_USER: user ftp
 - FTP_PASS: password ftp
 - FTP_HOST: host ftp
 - FTP_PATH: path ftp
+- FTP_FILE_NAME: file name in ftp
+- FTP_OPTIONS: custon ftp arguments [ex: --ftp-ssl]
