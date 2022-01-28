@@ -1,5 +1,5 @@
 #!/bin/bash
-export DUMP_START_TIME=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+export DUMP_START_TIME=$(date -u +'%Y-%m-%dT%H%M%SZ')
 export FILE_TO_BK="${DUMP_START_TIME}.dump.sql.gz"
 export DUMP_FILE="/tmp/${FILE_TO_BK}"
 
@@ -21,8 +21,6 @@ aws s3 cp $DUMP_FILE s3://$S3_BUCKET/$S3_PREFIX/$S3_FILE_NAME
 echo "[MySQL-BK-S3-FTP]: Upload to FTP Server"
 if [[ -z "${FTP_FILE_NAME}" ]]; then
     FTP_FILE_NAME=$FILE_TO_BK
-else
-    mv $DUMP_FILE $FTP_FILE_NAME
 fi
 
-curl $FTP_OPTIONS -T $FTP_FILE_NAME -u $FTP_USER:$FTP_PASS ftp://$FTP_HOST/$FTP_PATH/
+curl $FTP_OPTIONS -T $DUMP_FILE -u $FTP_USER:$FTP_PASS ftp://$FTP_HOST/$FTP_PATH/$FTP_FILE_NAME
